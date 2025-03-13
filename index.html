@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Danz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+
+        /* Animasi masuk */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSmooth 1s ease-out forwards;
+        }
+
+        @keyframes fadeInSmooth {
+            0% { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        /* Animasi Gradient Bergerak */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Panel Portofolio */
+        .portfolio-overlay {
+            position: fixed;
+            top: 0;
+            right: -50%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(270deg, yellow, #ffffff, #1e3c72);
+            background-size: 400% 400%;
+            border-left: 3px solid yellow;
+            padding: 20px;
+            color: black;
+            transition: right 0.5s ease-in-out;
+            z-index: 999;
+            display: none;
+            animation: gradientMove 5s ease infinite;
+            opacity: 1 !important; /* Panel tidak ikut transparan */
+        }
+
+        .portfolio-overlay.active {
+            display: block;
+            right: 0;
+        }
+
+        /* Efek transparan hanya tampilan utama saat panel aktif */
+        body.panel-active .container,
+        body.panel-active .info-grid {
+            opacity: 0.3;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Tombol Menu */
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 25px;
+            cursor: pointer;
+            color: white;
+            z-index: 1000;
+        }
+
+        /* Profil */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid yellow;
+            margin-top: 150px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Nama */
+        .name {
+            font-size: 35px;
+            font-weight: bold;
+            color: yellow;
+            margin-top: 10px;
+        }
+
+        /* Grid Teknologi */
+        .tech-logos {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech-logos img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        /* Overlay untuk menutup panel */
+        .overlay-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            display: none;
+        }
+
+        /* Project Button */
+        .project-button {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: black;
+            color: yellow;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .project-button:hover {
+            background-color: yellow;
+            color: black;
+        }
+
+        /* Informasi */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+            text-align: left;
+        }
+
+        .info-box {
+            background: rgba(128, 128, 128, 0.3);
+            padding: 15px;
+            border-left: 3px solid yellow;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol Menu -->
+    <div class="menu-button fade-in" onclick="toggleMenu()">☰</div>
+
+    <!-- Halaman Utama -->
+    <div class="container">
+        <img src="danz-profile.jpg" alt="Profile Danz" class="profile-img fade-in" onclick="redirectToWhatsApp()">
+        <h1 class="name fade-in">𝐃𝐚𝐧𝐳</h1>
+        <p class="fade-in">sᴇʟᴀᴍᴀᴛ ᴅᴀᴛᴀɴɢ ᴅɪ ᴡᴇʙsɪᴛᴇ ʀᴇsʏ ᴅᴀɴᴢ! ᴅɪ sɪɴɪ, sᴀʏᴀ ᴍᴇɴᴀᴍᴘɪʟᴋᴀɴ ᴘʀᴏʏᴇᴋ ᴅᴀɴ ᴘᴇɴɢᴀʟᴀᴍᴀɴ sᴀʏᴀ.</p>
+        
+        <!-- Informasi dalam bentuk kolom -->
+        <div class="info-grid">
+            <div class="info-box fade-in">
+                <h3>💻 Tentang Website</h3>
+                <p>ᴡᴇʙsɪᴛᴇ ɪɴɪ ᴅɪʙᴜᴀᴛ sᴇʙᴀɢᴀɪ ᴘᴏʀᴛᴏғᴏʟɪᴏ ʀᴇsᴍɪ ᴅᴀɴᴢ, ᴍᴇɴᴀᴍᴘɪʟᴋᴀɴ ʙᴇʀʙᴀɢᴀɪ ᴘʀᴏʏᴇᴋ ᴅᴀɴ ᴘᴇɴɢᴀʟᴀᴍᴀɴ ᴅᴀʟᴀᴍ ᴅᴜɴɪᴀ ᴘᴇᴍʀᴏɢʀᴀᴍᴀɴ.</p>
+                <p><b>ᴛᴇᴋɴᴏʟᴏɢɪ ʏᴀɴɢ ᴅɪɢᴜɴᴀᴋᴀɴ:</b></p>
+                <ul>
+                    <li>✔ HTML - Struktur halaman</li>
+                    <li>✔ CSS - Tampilan dan animasi</li>
+                    <li>✔ JavaScript - Interaksi pengguna</li>
+                </ul>
+            </div>
+
+            <div class="info-box fade-in">
+                <h3>⚠️ Larangan</h3>
+                <p>- ᴅɪʟᴀʀᴀɴɢ ᴍᴇɴʏᴀʟɪɴ ᴋᴏᴅᴇ ᴛᴀɴᴘᴀ ɪᴢɪɴ.</p>
+                <p>- ᴅɪʟᴀʀᴀɴɢ ᴍᴇɴɢᴋʟᴀɪᴍ sᴇʙᴀɢᴀɪ ʜᴀsɪʟ sᴇɴᴅɪʀɪ.</p>
+                <p>- ᴅɪʟᴀʀᴀɴɢ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ᴜɴᴛᴜᴋ ᴛᴜᴊᴜᴀɴ ɪʟᴇɢᴀʟ.</p>
+                <p>ʜᴜʙᴜɴɢɪ sᴀʏᴀ ᴍᴇʟᴀʟᴜɪ ᴡʜᴀᴛsᴀᴘᴘ ᴊɪᴋᴀ ɪɴɢɪɴ ᴋᴇʀᴊᴀ sᴀᴍᴀ.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay untuk menutup panel -->
+    <div class="overlay-background" onclick="closeMenu()"></div>
+
+    <!-- Panel Portofolio -->
+    <div class="portfolio-overlay">
+        <h2>MY PROJECT</h2>
+        <a href="https://wirdan1.github.io/to-lives-Tv/" class="project-button">Nonton Tv</a>
+        <a href="https://wirdan1.github.io/danz-ttdl/" class="project-button">TikTok-dl</a>
+        <a href="https://wirdan1.github.io/ytdl-danz/" class="project-button">YouTube</a>
+        <a href="https://wirdan1.github.io/danz-nsfw/" class="project-button">Crate-Img</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let elements = document.querySelectorAll(".fade-in");
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.3}s`;
+            });
+        });
+
+        function toggleMenu() {
+            const panel = document.querySelector(".portfolio-overlay");
+            const overlay = document.querySelector(".overlay-background");
+            document.body.classList.add("panel-active");
+
+            if (panel.classList.contains("active")) {
+                closeMenu();
+            } else {
+                panel.classList.add("active");
+                overlay.style.display = "block";
+            }
+        }
+
+        function closeMenu() {
+            document.querySelector(".portfolio-overlay").classList.remove("active");
+            document.querySelector(".overlay-background").style.display = "none";
+            document.body.classList.remove("panel-active");
+        }
+
+        function redirectToWhatsApp() {
+            window.location.href = "https://wa.me/62895323195263";
+        }
+    </script>
+
+</body>
+</html>
