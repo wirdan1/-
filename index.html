@@ -80,7 +80,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 3px solid yellow;
+            border: 3px solid red;
             margin-top: 150px;
             cursor: pointer;
             transition: transform 0.3s ease-in-out;
@@ -94,7 +94,7 @@
         .name {
             font-size: 35px;
             font-weight: bold;
-            color: yellow;
+            color: #ff9;
             margin-top: 10px;
         }
 
@@ -157,6 +157,15 @@
             border-left: 3px solid yellow;
             border-radius: 5px;
         }
+
+        /* Gambar di bagian bawah */
+        .bottom-image {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
@@ -167,14 +176,14 @@
     <!-- Halaman Utama -->
     <div class="container">
         <img src="profile.jpg" alt="Profile Danz" class="profile-img fade-in" onclick="redirectToWhatsApp()">
-        <h1 class="name fade-in">𝐃𝐚𝐧𝐳</h1>
-        <p class="fade-in">sᴇʟᴀᴍᴀᴛ ᴅᴀᴛᴀɴɢ ᴅɪ ᴡᴇʙsɪᴛᴇ ʀᴇsᴍɪ ᴅᴀɴᴢ! ᴅɪ sɪɴɪ, sᴀʏᴀ ᴍᴇɴᴀᴍᴘɪʟᴋᴀɴ ᴘʀᴏʏᴇᴋ ᴅᴀɴ ᴘᴇɴɢᴀʟᴀᴍᴀɴ sᴀʏᴀ.</p>
+        <h1 class="name fade-in"></h1>
+        <p class="fade-in">sᴇʟᴀᴍᴀᴛ ᴅᴀᴛᴀɴɢ ᴅɪ ᴡᴇʙsɪᴛᴇ ʀᴇsᴍɪ ᴅᴀɴᴢ. ᴅɪ sɪɴɪ ᴋᴀᴍɪ ᴀᴋᴀɴ ᴍᴇɴᴀᴍᴘɪʟᴋᴀɴ ᴘʀᴏʏᴇᴋ ᴅᴀɴ ᴘᴇɴɢᴀʟᴀᴍᴀɴ sᴀʏᴀ.</p>
         
         <!-- Informasi dalam bentuk kolom -->
         <div class="info-grid">
             <div class="info-box fade-in">
                 <h3>💻 Tentang Website</h3>
-                <p>ᴡᴇʙsɪᴛᴇ ɪɴɪ ᴅɪʙᴜᴀᴛ sᴇʙᴀɢᴀɪ ᴘᴏʀᴛᴏғᴏʟɪᴏ ʀᴇsᴍɪ ᴅᴀɴᴢ, ᴍᴇɴᴀᴍᴘɪʟᴋᴀɴ ʙᴇʀʙᴀɢᴀɪ ᴘʀᴏʏᴇᴋ ᴅᴀɴ ᴘᴇɴɢᴀʟᴀᴍᴀɴ ᴅᴀʟᴀᴍ ᴅᴜɴɪᴀ ᴘᴇᴍʀᴏɢʀᴀᴍᴀɴ.</p>
+                <p>ᴡᴇʙsɪᴛᴇ ɪɴɪ ᴅɪʙᴜᴀᴛ sᴇʙᴀɢᴀɪ ᴘᴏʀᴛᴏғᴏʟɪᴏ ʀᴇsᴍɪ ᴅᴀɴᴢ, ᴍᴇɴᴀᴍᴘɪʟᴋᴀɴ ʙᴇʀʙᴀɢᴀɪ ᴘʀᴏʏᴇᴋ ᴅᴀɴ ᴘᴇɴɢᴀʟᴀᴍᴀɴ ᴅᴀʟᴀᴍ ᴅᴜɴɪᴀ ᴘᴇᴍʀᴏɢʀᴀɴ.</p>
                 <p><b>ᴛᴇᴋɴᴏʟᴏɢɪ ʏᴀɴɢ ᴅɪɢᴜɴᴀᴋᴀɴ:</b></p>
                 <ul>
                     <li> HTML - Struktur halaman</li>
@@ -205,12 +214,22 @@
         <a href="https://wirdan1.github.io/danz-nsfw/" class="project-button">Crate-Img</a>
     </div>
 
+    <!-- Pemutar Musik -->
+    <audio id="audioPlayer" autoplay loop>
+        <source src="music.mp3" type="audio/mp3">
+        Browser Anda tidak mendukung pemutar audio.
+    </audio>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let elements = document.querySelectorAll(".fade-in");
             elements.forEach((el, index) => {
                 el.style.animationDelay = `${index * 0.3}s`;
             });
+
+            // Pemutaran otomatis saat halaman dimuat
+            var audio = document.getElementById("audioPlayer");
+            audio.volume = 0.5; // Set volume ke 50%
         });
 
         function toggleMenu() {
